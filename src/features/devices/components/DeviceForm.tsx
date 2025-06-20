@@ -19,6 +19,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { createDevice } from "@/actions/device/create-device";
+import { useNavigate } from "react-router";
 
 const formSchema = z.object({
   ip: z.string().min(1),
@@ -29,6 +31,7 @@ const formSchema = z.object({
 });
 
 export const DeviceForm = () => {
+  const navigate = useNavigate();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -38,9 +41,13 @@ export const DeviceForm = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-  }
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    const result = await createDevice(values);
+    if (result.success) {
+      navigate("/devices");
+    }
+  };
+
   return (
     <Form {...form}>
       <form
