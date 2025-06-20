@@ -5,7 +5,7 @@ import { DeviceForm } from "../components/DeviceForm";
 
 export const NewDevicePage = () => {
   return (
-    <main className="container mx-auto w-full p-4 lg:max-w-4xl">
+    <main className="container mx-auto grid w-full grid-rows-[auto_1fr] p-4 lg:max-w-4xl">
       <div className="flex items-center justify-between">
         <header>
           <div className="flex items-center gap-2">
@@ -24,7 +24,7 @@ export const NewDevicePage = () => {
           <QrCode className="size-4" />
         </Button>
       </div>
-      <div className="mt-4">
+      <div className="mt-10">
         <DeviceForm />
       </div>
     </main>
