@@ -5,6 +5,7 @@ import { relations } from "drizzle-orm";
 
 export const DeviceSchema = sqliteTable("device", {
   id: integer("id").primaryKey({ autoIncrement: true }),
+  ip: text("ip").notNull(),
   name: text("name").notNull(),
   description: text("description"),
   icon: text("icon"),
