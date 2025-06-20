@@ -2,7 +2,7 @@ import Database from "@tauri-apps/plugin-sql";
 import { drizzle } from "drizzle-orm/sqlite-proxy";
 import * as schema from "./schemas/";
 
-export const sqlite = await Database.load("sqlite:minecoords.db");
+export const sqlite = await Database.load("sqlite:smart-home.db");
 
 export const db = drizzle<typeof schema>(
   async (sql, params, method) => {

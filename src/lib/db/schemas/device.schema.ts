@@ -8,7 +8,6 @@ export const DeviceSchema = sqliteTable("device", {
   ip: text("ip").notNull(),
   name: text("name").notNull(),
   description: text("description"),
-  icon: text("icon"),
   type: text("type").notNull(),
   ...timestamps,
 
