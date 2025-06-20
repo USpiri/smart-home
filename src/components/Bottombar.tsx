@@ -3,7 +3,7 @@ import { Button } from "./ui/button";
 
 export const Bottombar = () => {
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 flex h-14 w-full items-center justify-around bg-background dark:border-t dark:border-border shadow-[0_-2px_4px_rgba(0,0,0,0.1)] md:h-16">
+    <nav className="bg-background dark:border-border fixed right-0 bottom-0 left-0 z-50 flex h-14 w-full items-center justify-around shadow-[0_-2px_4px_rgba(0,0,0,0.1)] md:h-16 dark:border-t">
       <Button variant="ghost" size="icon" className="text-muted-foreground">
         <Home className="size-5" />
         <span className="sr-only">Home</span>

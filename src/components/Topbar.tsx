@@ -7,8 +7,8 @@ export const Topbar = () => {
   const setTheme = useThemeStore((s) => s.setTheme);
 
   return (
-    <div className="bg-background sticky h-14 flex items-center justify-between px-4 top-0 border-b border-border">
-      <h1 className="text-lg font-mono">Smart home</h1>
+    <div className="bg-background border-border sticky top-0 flex h-14 items-center justify-between border-b px-4">
+      <h1 className="font-mono text-lg">Smart home</h1>
       <div>
         <Button variant="ghost" size="icon" className="text-muted-foreground">
           <QrCode className="size-4" />
