@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, QrCode } from "lucide-react";
 import { Link } from "react-router";
+import { DeviceForm } from "../components/DeviceForm";
 
 export const NewDevicePage = () => {
   return (
@@ -22,6 +23,9 @@ export const NewDevicePage = () => {
         <Button variant="outline" size="icon">
           <QrCode className="size-4" />
         </Button>
+      </div>
+      <div className="mt-4">
+        <DeviceForm />
       </div>
     </main>
   );
