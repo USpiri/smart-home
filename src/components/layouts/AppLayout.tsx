@@ -1,7 +1,8 @@
-import { Outlet } from "react-router";
-import { Topbar } from "../Topbar";
 import { useThemeStore } from "@/store/theme.store";
 import { useEffect } from "react";
+import { Outlet } from "react-router";
+import { Bottombar } from "../Bottombar";
+import { Topbar } from "../Topbar";
 
 export const AppLayout = () => {
   const theme = useThemeStore((s) => s.theme);
@@ -16,6 +17,7 @@ export const AppLayout = () => {
     <div>
       <Topbar />
       <Outlet />
+      <Bottombar />
     </div>
   );
 };
