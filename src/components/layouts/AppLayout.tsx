@@ -14,7 +14,7 @@ export const AppLayout = () => {
   }, []);
 
   return (
-    <div>
+    <div className="grid h-screen grid-rows-[auto_1fr_auto]">
       <Topbar />
       <Outlet />
       <Bottombar />
