@@ -21,6 +21,8 @@ import {
 } from "@/components/ui/select";
 import { createDevice } from "@/actions/device/create-device";
 import { useNavigate } from "react-router";
+import type { Device } from "@/types";
+import { useDeviceMutation } from "../hooks/useDeviceMutatios";
 
 const formSchema = z.object({
   ip: z.string().min(1),
@@ -30,18 +32,41 @@ const formSchema = z.object({
   roomId: z.number().optional(),
 });
 
-export const DeviceForm = () => {
+interface Props {
+  device?: Device;
+}
+
+// TODO: Add device types and rooms
+
+export const DeviceForm = ({ device }: Props) => {
   const navigate = useNavigate();
+  const { mutate: updateDevice } = useDeviceMutation();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      ip: "",
-      name: "",
-      type: "switch",
+      ip: device?.ip ?? "",
+      name: device?.name ?? "",
+      type: (device?.type as "switch") ?? "switch",
+      description: device?.description ?? undefined,
+      roomId: device?.roomId ?? undefined,
     },
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    if (device) {
+      updateDevice(
+        {
+          deviceId: device.id,
+          values,
+        },
+        {
+          onSuccess: () => {
+            navigate(`/devices/${device.id}`);
+          },
+        },
+      );
+      return;
+    }
     const result = await createDevice(values);
     if (result.success) {
       navigate("/devices");

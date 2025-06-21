@@ -20,6 +20,7 @@ export const AppRouter = () => {
             <Route index element={<DevicesPage />} />
             <Route path="new" element={<NewDevicePage />} />
             <Route path=":deviceId" element={<DevicePage />} />
+            <Route path=":deviceId/edit" element={<NewDevicePage />} />
           </Route>
           <Route path="/scan-qr" element={<ScanQrPage />} />
         </Route>
