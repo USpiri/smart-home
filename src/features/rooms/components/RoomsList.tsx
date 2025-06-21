@@ -4,7 +4,7 @@ import {
   AccordionContent,
   AccordionItem,
 } from "@/components/ui/accordion";
-import { DeviceList } from "@/features/devices/components/DeviceList";
+import { DeviceList } from "@/components/DeviceList";
 import type { RoomWithDevices } from "@/types";
 import { House } from "lucide-react";
 import { RoomListActions } from "./RoomListActions";

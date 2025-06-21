@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { Link } from "react-router";
-import { DeviceList } from "../components/DeviceList";
+import { DeviceList } from "../../../components/DeviceList";
 import { useDevices } from "../hooks/useDevices";
 
 export const DevicesPage = () => {
