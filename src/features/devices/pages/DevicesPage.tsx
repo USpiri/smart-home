@@ -1,10 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { Link } from "react-router";
+import { DeviceList } from "../components/DeviceList";
+import { useDevices } from "../hooks/useDevices";
 
 export const DevicesPage = () => {
+  const {
+    query: { data, isLoading },
+  } = useDevices();
+
   return (
-    <main className="container mx-auto w-full p-4 lg:max-w-4xl">
+    <main className="container mx-auto w-full space-y-8 p-4 lg:max-w-4xl">
       <div className="flex items-center justify-between">
         <header>
           <h1 className="text-2xl font-bold">Devices</h1>
@@ -19,6 +25,8 @@ export const DevicesPage = () => {
           </Link>
         </Button>
       </div>
+      {isLoading && <div>Loading...</div>}
+      {data && <DeviceList devices={data} />}
     </main>
   );
 };
