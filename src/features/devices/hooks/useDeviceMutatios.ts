@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateDevice } from "@/actions/device";
-import type { Device } from "@/types";
+import type { Device, RoomWithDevices } from "@/types";
 
 const updateDeviceFn = async (deviceId: number, device: Partial<Device>) => {
   const result = await updateDevice(deviceId, device);
@@ -22,10 +22,26 @@ export const useDeviceMutation = () => {
       values: Partial<Device>;
     }) => updateDeviceFn(deviceId, values),
     onSuccess: (data) => {
-      queryClient.setQueryData(["device", data.id], data);
+      let oldRoomId: number | null = null;
+
+      queryClient.setQueryData(["device", data.id], (old: Device) => {
+        oldRoomId = old.roomId;
+        return data;
+      });
       queryClient.setQueryData(["devices"], (old: Device[]) =>
         old.map((device) => (device.id === data.id ? data : device)),
       );
+
+      // If the device is being moved to a different room, update the room's devices
+      if (data.roomId && data.roomId !== oldRoomId) {
+        queryClient.setQueryData(["rooms"], (old: RoomWithDevices[]) =>
+          old.map((room) =>
+            room.id === data.roomId
+              ? { ...room, devices: [...(room.devices ?? []), data] }
+              : room,
+          ),
+        );
+      }
     },
   });
 };
