@@ -7,7 +7,6 @@ export const RoomSchema = sqliteTable("room", {
   name: text("name").notNull(),
   description: text("description"),
   icon: text("icon"),
-  type: text("type").notNull(),
 });
 
 export const RoomSchemaRelations = relations(RoomSchema, ({ many }) => ({
