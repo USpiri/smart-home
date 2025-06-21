@@ -32,7 +32,8 @@ export const useDeviceMutation = () => {
         old.map((device) => (device.id === data.id ? data : device)),
       );
 
-      // If the device is being moved to a different room, update the room's devices
+      // If the device is being removed from a room, update the room's devices
+      // and remove the device from the old room's devices
       if (data.roomId && data.roomId !== oldRoomId) {
         queryClient.setQueryData(["rooms"], (old: RoomWithDevices[]) =>
           old.map((room) => {
