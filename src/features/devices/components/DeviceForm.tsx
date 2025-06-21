@@ -23,6 +23,7 @@ import { createDevice } from "@/actions/device/create-device";
 import { useNavigate } from "react-router";
 import type { Device } from "@/types";
 import { useDeviceMutation } from "../hooks/useDeviceMutatios";
+import { useCreateDevice } from "../hooks/useCreateDevice";
 
 const formSchema = z.object({
   ip: z.string().min(1),
@@ -41,6 +42,7 @@ interface Props {
 export const DeviceForm = ({ device }: Props) => {
   const navigate = useNavigate();
   const { mutate: updateDevice } = useDeviceMutation();
+  const { mutate: createDevice } = useCreateDevice();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -67,10 +69,11 @@ export const DeviceForm = ({ device }: Props) => {
       );
       return;
     }
-    const result = await createDevice(values);
-    if (result.success) {
-      navigate("/devices");
-    }
+    createDevice(values, {
+      onSuccess: () => {
+        navigate("/devices");
+      },
+    });
   };
 
   return (
