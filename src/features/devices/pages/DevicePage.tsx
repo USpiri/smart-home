@@ -30,15 +30,11 @@ export const DevicePage = () => {
       <div className="flex items-center justify-between">
         <header>
           <div className="flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="size-8"
-              onClick={() => navigate(-1)}
-            >
-              <ArrowLeft className="size-4" />
-            </Button>
-
+            <Link to="/devices">
+              <Button variant="ghost" size="icon" className="size-8">
+                <ArrowLeft className="size-4" />
+              </Button>
+            </Link>
             <h1 className="text-2xl font-bold">
               {!isLoading ? device?.name : "Loading..."}
             </h1>
