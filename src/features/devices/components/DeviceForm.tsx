@@ -19,7 +19,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { createDevice } from "@/actions/device/create-device";
 import { useNavigate } from "react-router";
 import type { Device } from "@/types";
 import { useDeviceMutation } from "../hooks/useDeviceMutatios";
