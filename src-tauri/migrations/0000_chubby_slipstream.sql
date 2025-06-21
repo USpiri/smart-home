@@ -14,6 +14,5 @@ CREATE TABLE `room` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`name` text NOT NULL,
 	`description` text,
-	`icon` text,
-	`type` text NOT NULL
+	`icon` text
 );
