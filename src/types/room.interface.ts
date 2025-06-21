@@ -6,5 +6,5 @@ export type Room = InferSelectModel<typeof RoomSchema>;
 export type RoomInsert = InferInsertModel<typeof RoomSchema>;
 
 export type RoomWithDevices = Room & {
-  devices: Device[];
+  devices?: Device[];
 };
