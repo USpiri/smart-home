@@ -1,8 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { Link } from "react-router";
+import { useRooms } from "../hooks";
+import { RoomsList } from "../components/RoomsList";
 
 export const RoomsPage = () => {
+  const {
+    query: { data: rooms, isLoading },
+  } = useRooms();
+
   return (
     <main className="container mx-auto w-full space-y-8 p-4 lg:max-w-4xl">
       <div className="flex items-center justify-between">
@@ -19,6 +25,13 @@ export const RoomsPage = () => {
           </Link>
         </Button>
       </div>
+      {isLoading && <div>Loading...</div>}
+      {!isLoading && rooms && <RoomsList rooms={rooms} />}
+      {!isLoading && !rooms && (
+        <div className="text-muted-foreground text-sm">
+          There are no rooms at the moment
+        </div>
+      )}
     </main>
   );
 };

@@ -18,6 +18,7 @@ export const AppRouter = () => {
           <Route path="/rooms">
             <Route index element={<RoomsPage />} />
             <Route path="new" element={<NewRoomPage />} />
+            <Route path=":roomId/edit" element={<NewRoomPage />} />
           </Route>
           <Route path="/devices">
             <Route index element={<DevicesPage />} />
