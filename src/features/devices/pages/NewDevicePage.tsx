@@ -1,11 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, QrCode } from "lucide-react";
-import { Link, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import { DeviceForm } from "../components/DeviceForm";
 import { useDevice } from "../hooks/useDevice";
 
 export const NewDevicePage = () => {
   const { deviceId } = useParams();
+  const navigate = useNavigate();
   const {
     query: { data: device, isLoading },
   } = useDevice(Number(deviceId));
@@ -15,11 +16,15 @@ export const NewDevicePage = () => {
       <div className="flex items-center justify-between">
         <header>
           <div className="flex items-center gap-2">
-            <Link to="/devices">
-              <Button variant="ghost" size="icon" className="size-8">
-                <ArrowLeft className="size-4" />
-              </Button>
-            </Link>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="size-8"
+              onClick={() => navigate(-1)}
+            >
+              <ArrowLeft className="size-4" />
+            </Button>
+
             <h1 className="text-2xl font-bold">
               {deviceId ? "Edit Device" : "New Device"}
             </h1>
