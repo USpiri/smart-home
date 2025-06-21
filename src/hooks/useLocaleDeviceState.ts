@@ -1,12 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 
-// Switch Device API:
-// Base URL: http://<deviceIp>
-// GET /state
-// POST /on
-// POST /off
-// POST /toggle
-
 type DeviceState = {
   status: "on" | "off";
 };
@@ -23,6 +16,7 @@ export const useLocaleDeviceState = (deviceIp?: string) => {
     queryFn: () => getDeviceState(deviceIp!),
     enabled: !!deviceIp,
     retry: false,
+    retryOnMount: false,
   });
   return { query };
 };
