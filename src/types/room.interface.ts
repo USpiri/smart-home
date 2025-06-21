@@ -1,16 +1,10 @@
+import type { InferInsertModel, InferSelectModel } from "drizzle-orm";
 import type { Device } from "./device.interface";
+import type { RoomSchema } from "@/lib/db";
 
-export interface Room {
-  id: string;
-  name: string;
-  description?: string;
-  icon?: string;
-  type: string;
-  status: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
+export type Room = InferSelectModel<typeof RoomSchema>;
+export type RoomInsert = InferInsertModel<typeof RoomSchema>;
 
-export interface RoomWithDevices extends Room {
+export type RoomWithDevices = Room & {
   devices: Device[];
-}
+};
