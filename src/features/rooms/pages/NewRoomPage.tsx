@@ -1,10 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { Link, useParams } from "react-router";
+import { RoomForm } from "../components/RoomForm";
+import { useRooms } from "../hooks";
 
 export const NewRoomPage = () => {
   const { roomId } = useParams();
-  const isLoading = false;
+  const {
+    query: { data: rooms, isLoading },
+  } = useRooms();
+
+  const room = rooms?.find((room) => room.id === Number(roomId));
 
   return (
     <main className="container mx-auto grid w-full grid-rows-[auto_1fr] p-4 lg:max-w-4xl">
@@ -26,7 +32,7 @@ export const NewRoomPage = () => {
         </header>
       </div>
       <div className="mt-10">
-        {/* {isLoading ? <div>Loading...</div> : <DeviceForm device={device} />} */}
+        {isLoading ? <div>Loading...</div> : <RoomForm room={room} />}
       </div>
     </main>
   );
