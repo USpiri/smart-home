@@ -26,7 +26,12 @@ export const DevicesPage = () => {
         </Button>
       </div>
       {isLoading && <div>Loading...</div>}
-      {data && <DeviceList devices={data} />}
+      {!isLoading && data && data.length > 0 && <DeviceList devices={data} />}
+      {!isLoading && data && data.length === 0 && (
+        <div className="text-muted-foreground text-sm">
+          There are no devices at the moment
+        </div>
+      )}
     </main>
   );
 };

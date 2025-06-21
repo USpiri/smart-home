@@ -26,8 +26,8 @@ export const RoomsPage = () => {
         </Button>
       </div>
       {isLoading && <div>Loading...</div>}
-      {!isLoading && rooms && <RoomsList rooms={rooms} />}
-      {!isLoading && !rooms && (
+      {!isLoading && rooms && rooms.length > 0 && <RoomsList rooms={rooms} />}
+      {!isLoading && rooms && rooms.length === 0 && (
         <div className="text-muted-foreground text-sm">
           There are no rooms at the moment
         </div>
