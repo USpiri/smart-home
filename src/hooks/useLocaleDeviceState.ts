@@ -17,10 +17,11 @@ const getDeviceState = async (deviceIp: string) => {
   return data;
 };
 
-export const useLocaleDeviceState = (deviceIp: string) => {
+export const useLocaleDeviceState = (deviceIp?: string) => {
   const query = useQuery({
     queryKey: ["device", "state", deviceIp],
-    queryFn: () => getDeviceState(deviceIp),
+    queryFn: () => getDeviceState(deviceIp!),
+    enabled: !!deviceIp,
     retry: false,
   });
   return { query };
