@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, QrCode } from "lucide-react";
-import { Link, useNavigate, useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { DeviceForm } from "../components/DeviceForm";
 import { useDevice } from "../hooks/useDevice";
 
