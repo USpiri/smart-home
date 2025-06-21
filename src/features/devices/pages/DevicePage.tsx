@@ -1,16 +1,29 @@
-import { Link, Navigate, useParams } from "react-router";
+import { Link, Navigate, useNavigate, useParams } from "react-router";
 import { useDevice } from "../hooks/useDevice";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, PencilLine, QrCode } from "lucide-react";
+import { ArrowLeft, PencilLine, QrCode, Trash2 } from "lucide-react";
+import { useDeleteDevice } from "../hooks/useDeleteDevice";
 
 export const DevicePage = () => {
   const { deviceId } = useParams();
+  const { mutate: deleteDevice } = useDeleteDevice();
+  const navigate = useNavigate();
 
   const {
     query: { data: device, isLoading },
   } = useDevice(Number(deviceId));
 
-  if (!deviceId || (!isLoading && !device)) return <Navigate to="/devices" />;
+  if (!deviceId) return <Navigate to="/devices" />;
+
+  const handleDelete = () => {
+    if (device) {
+      deleteDevice(device.id, {
+        onSuccess: () => {
+          navigate("/devices");
+        },
+      });
+    }
+  };
 
   return (
     <main className="container mx-auto grid w-full grid-rows-[auto_1fr] p-4 lg:max-w-4xl">
@@ -32,6 +45,14 @@ export const DevicePage = () => {
           </p>
         </header>
         <div className="flex items-center gap-2">
+          <Button
+            variant="outline"
+            size="icon"
+            disabled={isLoading}
+            onClick={handleDelete}
+          >
+            <Trash2 className="size-4" />
+          </Button>
           <Button variant="outline" size="icon" asChild disabled={isLoading}>
             <Link to={`/devices/${device?.id}/edit`}>
               <PencilLine className="size-4" />
