@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateRoom } from "@/actions/room";
-import type { Room } from "@/types";
+import type { Room, RoomWithDevices } from "@/types";
 
 const updateRoomFn = async (roomId: number, room: Partial<Room>) => {
   const result = await updateRoom(roomId, room);
@@ -23,8 +23,10 @@ export const useRoomMutation = () => {
     }) => updateRoomFn(roomId, values),
     onSuccess: (data) => {
       //   queryClient.setQueryData(["room", data.id], data);
-      queryClient.setQueryData(["rooms"], (old: Room[]) =>
-        old.map((room) => (room.id === data.id ? data : room)),
+      queryClient.setQueryData(["rooms"], (old: RoomWithDevices[]) =>
+        old.map((room) =>
+          room.id === data.id ? { ...data, devices: room.devices } : room,
+        ),
       );
     },
   });
