@@ -21,8 +21,8 @@ import {
 } from "@/components/ui/select";
 import { useNavigate } from "react-router";
 import type { Device } from "@/types";
-import { useDeviceMutation } from "../hooks/useDeviceMutatios";
-import { useCreateDevice } from "../hooks/useCreateDevice";
+import { useCreateDevice, useDeviceMutation } from "../hooks";
+import { useRooms } from "@/features/rooms/hooks";
 
 const formSchema = z.object({
   ip: z.string().min(1),
@@ -42,6 +42,9 @@ export const DeviceForm = ({ device }: Props) => {
   const navigate = useNavigate();
   const { mutate: updateDevice } = useDeviceMutation();
   const { mutate: createDevice } = useCreateDevice();
+  const {
+    query: { data: rooms, isLoading },
+  } = useRooms();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -157,7 +160,7 @@ export const DeviceForm = ({ device }: Props) => {
               <FormItem>
                 <FormLabel>Room</FormLabel>
                 <Select
-                  onValueChange={field.onChange}
+                  onValueChange={(value) => field.onChange(Number(value))}
                   defaultValue={field.value?.toString()}
                 >
                   <FormControl>
@@ -166,9 +169,23 @@ export const DeviceForm = ({ device }: Props) => {
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <div className="text-muted-foreground px-3 py-2 text-sm">
-                      There are no rooms at the moment
-                    </div>
+                    {isLoading && (
+                      <div className="text-muted-foreground px-3 py-2 text-sm">
+                        Loading rooms...
+                      </div>
+                    )}
+                    {!isLoading &&
+                      rooms &&
+                      rooms.map((room) => (
+                        <SelectItem key={room.id} value={room.id.toString()}>
+                          {room.name}
+                        </SelectItem>
+                      ))}
+                    {!isLoading && !rooms && (
+                      <div className="text-muted-foreground px-3 py-2 text-sm">
+                        There are no rooms at the moment
+                      </div>
+                    )}
                   </SelectContent>
                 </Select>
                 <FormMessage />
