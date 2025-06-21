@@ -1,5 +1,9 @@
 import { AppLayout } from "@/components/layouts";
-import { DevicesPage, NewDevicePage } from "@/features/devices/pages";
+import {
+  DevicePage,
+  DevicesPage,
+  NewDevicePage,
+} from "@/features/devices/pages";
 import { HomePage } from "@/features/home/pages";
 import { RoomsPage } from "@/features/rooms/pages";
 import { ScanQrPage } from "@/features/scan-qr/pages";
@@ -15,6 +19,7 @@ export const AppRouter = () => {
           <Route path="/devices">
             <Route index element={<DevicesPage />} />
             <Route path="new" element={<NewDevicePage />} />
+            <Route path=":deviceId" element={<DevicePage />} />
           </Route>
           <Route path="/scan-qr" element={<ScanQrPage />} />
         </Route>
