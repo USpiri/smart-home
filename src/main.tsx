@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App.tsx";
 import { migrate } from "./lib/db";
 
-await migrate();
+migrate();
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
