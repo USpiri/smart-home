@@ -2,7 +2,7 @@
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "smart-home-app",
   "version": "0.1.0",
-  "identifier": "com.tauri.dev",
+  "identifier": "com.smart-home.app",
   "build": {
     "frontendDist": "../dist",
     "devUrl": "http://localhost:5173",
@@ -12,7 +12,7 @@
   "app": {
     "windows": [
       {
-        "title": "smart-home-app",
+        "title": "Smart Home App",
         "width": 800,
         "height": 600,
         "resizable": true,
@@ -33,6 +33,11 @@
       "icons/icon.icns",
       "icons/icon.ico"
     ],
-    "resources": ["migrations/*"]
+    "resources": ["migrations/**/*"]
+  },
+  "plugins": {
+    "sql": {
+      "preload": ["sqlite:smart-home.db"]
+    }
   }
 }
