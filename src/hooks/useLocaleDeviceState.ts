@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { fetch } from "@tauri-apps/plugin-http";
 
 type DeviceState = {
   status: "on" | "off";
