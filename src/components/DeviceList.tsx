@@ -7,7 +7,7 @@ interface Props {
 
 export const DeviceList = ({ devices }: Props) => {
   return (
-    <div className="grid grid-cols-2 gap-4 lg:grid-cols-3">
+    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
       {devices.map((device) => (
         <DeviceCard key={device.id} device={device} />
       ))}
