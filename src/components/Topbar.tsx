@@ -1,6 +1,7 @@
 import { useThemeStore } from "@/store/theme.store";
 import { Button } from "./ui/button";
 import { Moon, QrCode, Sun } from "lucide-react";
+import { Link } from "react-router";
 
 export const Topbar = () => {
   const theme = useThemeStore((s) => s.theme);
@@ -11,9 +12,16 @@ export const Topbar = () => {
       <div className="container mx-auto flex h-14 w-full items-center justify-between px-4 lg:max-w-4xl">
         <h1 className="font-mono font-semibold">Smart home</h1>
         <div>
-          <Button variant="ghost" size="icon" className="text-muted-foreground">
-            <QrCode className="size-4" />
-            <span className="sr-only">QR Code</span>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="text-muted-foreground"
+            asChild
+          >
+            <Link to="/scan-qr">
+              <QrCode className="size-4" />
+              <span className="sr-only">QR Code</span>
+            </Link>
           </Button>
           <Button
             variant="ghost"
