@@ -28,7 +28,10 @@ export const RoomsList = ({ rooms }: Props) => {
             </div>
           </AccordionTrigger>
           <AccordionContent>
-            <p className="text-muted-foreground text-sm">{room.description}</p>
+            <p className="text-muted-foreground text-sm">
+              {room.description}
+              {!room.description && !room.devices && <span>Nothing here</span>}
+            </p>
             {room.devices && room.devices.length > 0 && (
               <div className="mt-4 space-y-2">
                 <h3 className="text-sm font-medium">Devices</h3>
