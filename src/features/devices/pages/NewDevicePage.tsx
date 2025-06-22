@@ -28,9 +28,6 @@ export const NewDevicePage = () => {
             {deviceId ? "Edit a device" : "Add a new device to your home"}
           </p>
         </header>
-        <Button variant="outline" size="icon">
-          <QrCode className="size-4" />
-        </Button>
       </div>
       <div className="mt-10">
         {isLoading ? <div>Loading...</div> : <DeviceForm device={device} />}
