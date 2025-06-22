@@ -8,11 +8,13 @@ import { useLocalDeviceMutation } from "@/hooks/useLocalDeviceMutation";
 import { ConnectionStatus } from "@/components/ConnectionStatus";
 import { DeviceDetails } from "../components/DeviceDetails";
 import { DeviceActions } from "../components/DeviceActions";
+import { ShareDeviceDialog } from "../components/ShareDeviceDialog";
+import { useDialogStore } from "@/store";
 
 export const DevicePage = () => {
   const { deviceId } = useParams();
-  const { mutate: deleteDevice } = useDeleteDevice();
   const navigate = useNavigate();
+  const openDialog = useDialogStore((s) => s.toggleDialog);
 
   const {
     query: { data: device, isLoading },
@@ -25,6 +27,7 @@ export const DevicePage = () => {
       refetch,
     },
   } = useLocaleDeviceState(device?.ip);
+  const { mutate: deleteDevice } = useDeleteDevice();
   const { onMutation, offMutation } = useLocalDeviceMutation(device?.ip ?? "");
 
   const handleDelete = () => {
@@ -79,7 +82,12 @@ export const DevicePage = () => {
               <PencilLine className="size-4" />
             </Link>
           </Button>
-          <Button variant="outline" size="icon" disabled={isLoading}>
+          <Button
+            variant="outline"
+            size="icon"
+            disabled={isLoading}
+            onClick={() => openDialog("share-device")}
+          >
             <QrCode className="size-4" />
           </Button>
         </div>
@@ -107,6 +115,7 @@ export const DevicePage = () => {
         }}
         refetch={refetch}
       />
+      {device && <ShareDeviceDialog device={device} />}
     </main>
   );
 };
