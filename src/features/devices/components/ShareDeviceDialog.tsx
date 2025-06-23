@@ -7,7 +7,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import type { Device } from "@/types";
-import { QrCode } from "@/components/QrCode";
+import { DeviceQr } from "./DeviceQr";
 
 interface Props {
   device: Device;
@@ -30,7 +30,7 @@ export const ShareDeviceDialog = ({ device }: Props) => {
           </DialogDescription>
         </DialogHeader>
         <div className="flex items-center justify-center">
-          <QrCode data={device} size={300} />
+          <DeviceQr device={device} />
         </div>
       </DialogContent>
     </Dialog>
