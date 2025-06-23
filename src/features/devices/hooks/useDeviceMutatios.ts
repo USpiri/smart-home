@@ -55,6 +55,8 @@ export const useDeviceMutation = () => {
           }),
         );
       }
+      queryClient.invalidateQueries({ queryKey: ["home", "devices"] });
+      queryClient.invalidateQueries({ queryKey: ["home", "rooms"] });
     },
   });
 };

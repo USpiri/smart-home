@@ -28,6 +28,7 @@ export const useRoomMutation = () => {
           room.id === data.id ? { ...data, devices: room.devices } : room,
         ),
       );
+      queryClient.invalidateQueries({ queryKey: ["home", "rooms"] });
     },
   });
 };

@@ -23,6 +23,7 @@ export const useDeleteRoom = () => {
       //   setTimeout(() => {
       //     queryClient.removeQueries({ queryKey: ["room", data] });
       //   }, 500);
+      queryClient.invalidateQueries({ queryKey: ["home", "rooms"] });
     },
   });
 };

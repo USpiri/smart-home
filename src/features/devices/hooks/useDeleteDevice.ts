@@ -23,6 +23,7 @@ export const useDeleteDevice = () => {
       setTimeout(() => {
         queryClient.removeQueries({ queryKey: ["device", data] });
       }, 500);
+      queryClient.invalidateQueries({ queryKey: ["home", "devices"] });
     },
   });
 };
