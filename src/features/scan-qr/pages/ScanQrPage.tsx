@@ -24,7 +24,7 @@ export const ScanQrPage = () => {
   };
 
   return (
-    <main className="container mx-auto grid w-full grid-rows-[auto_1fr_auto] gap-4 p-4 lg:max-w-4xl">
+    <main className="container mx-auto grid h-full w-full grid-rows-[auto_1fr_auto] gap-4 overflow-hidden p-4 lg:max-w-4xl">
       <div className="flex items-center justify-between">
         <header>
           <h1 className="text-2xl font-bold">Scan QR Code</h1>

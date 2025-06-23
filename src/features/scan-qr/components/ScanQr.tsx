@@ -47,14 +47,16 @@ export const ScanQr = ({ onScan }: Props) => {
 
   return (
     <>
-      <div className="border-border relative h-full w-full rounded border border-dashed">
-        <video
-          ref={videoRef}
-          className={cn(
-            "h-full w-full rounded object-cover",
-            (!isRecording || scanStatus !== "scanning") && "hidden",
-          )}
-        />
+      <div className="border-border relative h-full w-full overflow-hidden rounded border border-dashed">
+        <div className="relative h-full w-full">
+          <video
+            ref={videoRef}
+            className={cn(
+              "size-full rounded object-cover",
+              (!isRecording || scanStatus !== "scanning") && "hidden",
+            )}
+          />
+        </div>
 
         {isLoading && (
           <div className="flex h-full w-full items-center justify-center">
