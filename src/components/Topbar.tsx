@@ -10,7 +10,9 @@ export const Topbar = () => {
   return (
     <div className="bg-background border-border sticky top-0 border-b">
       <div className="container mx-auto flex h-14 w-full items-center justify-between px-4 lg:max-w-4xl">
-        <h1 className="font-mono font-semibold">Smart home</h1>
+        <Link to="/">
+          <h1 className="font-mono font-semibold">Smart home</h1>
+        </Link>
         <div>
           <Button
             variant="ghost"
