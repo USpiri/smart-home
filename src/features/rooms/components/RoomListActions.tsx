@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Pencil, Pin, Trash2 } from "lucide-react";
 import { Link } from "react-router";
 import { useDeleteRoom } from "../hooks";
+import { usePinned } from "@/hooks";
+import { cn } from "@/lib/utils";
 
 interface Props {
   roomId: number;
@@ -9,6 +11,7 @@ interface Props {
 
 export const RoomListActions = ({ roomId }: Props) => {
   const { mutate: deleteRoom } = useDeleteRoom();
+  const { isPinedRoom, togglePinRoom } = usePinned();
 
   const handleDeleteRoom = () => {
     deleteRoom(roomId);
@@ -21,12 +24,18 @@ export const RoomListActions = ({ roomId }: Props) => {
         size="icon"
         onClick={(e) => {
           e.stopPropagation();
+          togglePinRoom(roomId);
         }}
         className="size-7"
         asChild
       >
         <div>
-          <Pin className="size-3.5" />
+          <Pin
+            className={cn(
+              "size-3.5",
+              isPinedRoom(roomId) && "fill-emerald-500 text-emerald-500",
+            )}
+          />
         </div>
       </Button>
       <Button
