@@ -1,16 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import type { Device } from "@/types";
-import {
-  MoreHorizontal,
-  Pin,
-  Share2,
-  ToggleLeft,
-  ToggleRight,
-} from "lucide-react";
+import { MoreHorizontal, Share2, ToggleLeft, ToggleRight } from "lucide-react";
 import { Link } from "react-router";
 import { useLocaleDeviceState, useLocalDeviceMutation } from "@/hooks";
 import { ConnectionStatus } from "./ConnectionStatus";
+import { PinDeviceButton } from "./PinDeviceButton";
 
 interface Props {
   device: Device;
@@ -54,9 +49,7 @@ export const DeviceCard = ({ device }: Props) => {
       <div className="mt-2 flex items-center justify-between">
         <p className="text-muted-foreground font-mono text-xs">{device.type}</p>
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="icon" className="size-7">
-            <Pin className="size-3" />
-          </Button>
+          <PinDeviceButton deviceId={device.id} />
           <Button variant="outline" size="icon" className="size-7">
             <Share2 className="size-3" />
           </Button>

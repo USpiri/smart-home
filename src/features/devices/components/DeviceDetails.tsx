@@ -2,6 +2,7 @@ import { ConnectionStatus } from "@/components/ConnectionStatus";
 import { LightBulbState } from "@/components/LightBulbState";
 import { useLocaleDeviceState } from "@/hooks";
 import { useDevice } from "../hooks/useDevice";
+import { PinDeviceButton } from "@/components/PinDeviceButton";
 
 interface Props {
   deviceId: number;
@@ -79,6 +80,15 @@ export const DeviceDetails = ({ deviceId }: Props) => {
           <p className="text-muted-foreground text-sm capitalize">
             {device?.type}
           </p>
+        </div>
+
+        <div>
+          <h2 className="text-muted-foreground mb-1 text-xs">Pined</h2>
+          <PinDeviceButton
+            deviceId={deviceId}
+            btnClassName="size-9 mt-2"
+            className="size-4"
+          />
         </div>
       </div>
     </section>
