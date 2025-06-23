@@ -19,7 +19,7 @@ const initialState = {
 
 export const usePinedStore = create<PinedStore>()(
   persist(
-    (set, get) => ({
+    (set) => ({
       ...initialState,
       pinRoom: (roomId: number) => {
         set((state) => ({
