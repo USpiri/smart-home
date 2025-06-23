@@ -1,6 +1,6 @@
 import { usePinedStore } from "@/store";
 
-export const usePinned = () => {
+export const usePined = () => {
   const pinRoom = usePinedStore((s) => s.pinRoom);
   const pinDevice = usePinedStore((s) => s.pinDevice);
   const unpinRoom = usePinedStore((s) => s.unpinRoom);

@@ -1,7 +1,7 @@
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
 import { Pin } from "lucide-react";
-import { usePinned } from "@/hooks";
+import { usePined } from "@/hooks";
 
 interface Props {
   deviceId: number;
@@ -14,7 +14,7 @@ export const PinDeviceButton = ({
   btnClassName,
   className,
 }: Props) => {
-  const { isPinedDevice, togglePinDevice } = usePinned();
+  const { isPinedDevice, togglePinDevice } = usePined();
 
   return (
     <Button

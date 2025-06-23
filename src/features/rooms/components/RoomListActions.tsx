@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Pencil, Pin, Trash2 } from "lucide-react";
 import { Link } from "react-router";
 import { useDeleteRoom } from "../hooks";
-import { usePinned } from "@/hooks";
+import { usePined } from "@/hooks";
 import { cn } from "@/lib/utils";
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
 
 export const RoomListActions = ({ roomId }: Props) => {
   const { mutate: deleteRoom } = useDeleteRoom();
-  const { isPinedRoom, togglePinRoom } = usePinned();
+  const { isPinedRoom, togglePinRoom } = usePined();
 
   const handleDeleteRoom = () => {
     deleteRoom(roomId);
