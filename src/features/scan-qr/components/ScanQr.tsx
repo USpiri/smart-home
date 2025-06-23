@@ -46,7 +46,7 @@ export const ScanQr = ({ onScan }: Props) => {
   };
 
   return (
-    <div className="flex flex-col justify-between gap-4">
+    <>
       <div className="border-border relative h-full w-full rounded border border-dashed">
         <video
           ref={videoRef}
@@ -104,6 +104,6 @@ export const ScanQr = ({ onScan }: Props) => {
           Stop Scanning
         </Button>
       </div>
-    </div>
+    </>
   );
 };
