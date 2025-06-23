@@ -4,6 +4,7 @@ import { Link } from "react-router";
 import { useDeleteRoom } from "../hooks";
 import { usePined } from "@/hooks";
 import { cn } from "@/lib/utils";
+import { toast } from "sonner";
 
 interface Props {
   roomId: number;
@@ -14,7 +15,13 @@ export const RoomListActions = ({ roomId }: Props) => {
   const { isPinedRoom, togglePinRoom } = usePined();
 
   const handleDeleteRoom = () => {
-    deleteRoom(roomId);
+    deleteRoom(roomId, {
+      onError: () => {
+        toast.error("Failed to delete room", {
+          description: "You can't delete a room with devices",
+        });
+      },
+    });
   };
 
   return (
