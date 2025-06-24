@@ -1,7 +1,7 @@
 # Smart Home App
 
 <p align="center">
-  <img src="" width="800" />
+  <img src="icon.png" width="250" />
   <br>
   <em>Minimalist cross-platform application Built with Tauri, React, and TypeScript. Local sqlite database, lazy routes, qr code for sharing devices.</em>
   <br>
@@ -135,6 +135,31 @@ For detailed instructions on how to add, edit, and manage devices and rooms, see
 - `pnpm preview` - Preview production build
 - `pnpm migrate` - Generate database migrations
 
+## 🔨 Build
+
+### Android Build
+
+For Android builds, you need to add the following permissions to the Android manifest file. These permissions are required for the app's core functionality:
+
+**File:** `src-tauri/gen/android/app/src/main/AndroidManifest.xml`
+
+Add these lines inside the `<manifest>` tag:
+
+```xml
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.CAMERA"/>
+```
+
+These permissions enable:
+
+- **INTERNET**: Required for device communication and network operations
+- **CAMERA**: Required for QR code scanning functionality
+
+### Build Commands
+
+- `pnpm tauri build` - Build command
+- `pnpm tauri android build --apk` - Android "apk only" build
+
 ## 🏗️ Project Structure
 
 ```
@@ -160,17 +185,13 @@ smart-home-app/
 
 ### Database
 
-The app uses SQLite with Drizzle ORM. Database migrations are handled automatically through Drizzle Kit but, currently, needs to be pasted on the Rust side.
-
-Originally, at least on desktop, the `migrate()` function handle the migrations automatically and tauri was in charge of add the `migrations/` folder to the bundle but for some [bug](https://github.com/tauri-apps/tauri/issues/8911) the android build is unable to access to the bundled resources.
-
 The app uses SQLite as its local database, managed through Drizzle ORM for type-safe operations. Database migrations are generated automatically using Drizzle Kit. However, due to current platform limitations, these migration strings (`src-tauri/migrations/`) must be manually copied to the Rust backend (`src-tauri/src/migrations.rs`).
 
-On desktop platforms, the `migrate()` function can automatically apply migrations, with Tauri bundling the `migrations/` folder as part of the application. However, due to a [known issue](https://github.com/tauri-apps/tauri/issues/8911), the Android build cannot access bundled resources, so migrations must be handled manually.
+On desktop platforms, the commented `migrate()` function can automatically apply migrations, with Tauri bundling the `migrations/` folder as part of the application. However, due to a [known issue](https://github.com/tauri-apps/tauri/issues/8911), the Android build cannot access bundled resources, so migrations must be handled manually.
 
 ## Data & Actions Layer ("API Layer")
 
-The app implements a structured "API layer" inspired by [this architecture](https://profy.dev/article/react-architecture-api-layer), organized as a **Data-Actions layer**. This approach separates concerns and provides a clean interface for the React app to interact with persistent data, similar to "Server Actions" in Next.js.
+The app implements a structured "API layer" inspired by [this post](https://profy.dev/article/react-architecture-api-layer), organized as a **Data-Actions layer**. This approach separates concerns and provides a clean interface for the React app to interact with persistent data, similar to "Server Actions" in Next.js.
 
 ```mermaid
 ---
