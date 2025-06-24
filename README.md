@@ -23,6 +23,8 @@
 
 A modern, cross-platform Smart Home application for managing my ESP devices. Built with Tauri, React, and TypeScript, this app provides an easy and modern interface for controlling and organizing my devices and a way to share the device configuration with others.
 
+![495shots_so](https://github.com/user-attachments/assets/3be9c049-6663-42bf-b1f3-e748c17104a1)
+
 > [!NOTE]
 >
 > - Currently, the app only supports switches running a custom firmware. However, the system is designed to be easily extensible for other device types in the future.
@@ -57,6 +59,8 @@ A modern, cross-platform Smart Home application for managing my ESP devices. Bui
 - **Modern UI**: Clean, responsive interface built with Tailwind CSS
 - **Dark/Light Theme**: Toggle between dark and light themes
 - **Cross-platform**: Works, at least, on Windows and Android
+
+![208shots_so](https://github.com/user-attachments/assets/0c6e832c-e5c4-4a44-97fe-d0ebd41e7933)
 
 ## 🛠️ Tech Stack
 
@@ -252,3 +256,11 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 Built with ❤️ using Tauri and React
+
+## Other Screenshots
+
+![Captura de pantalla 2025-06-24 110258](https://github.com/user-attachments/assets/49cf92a5-ec0b-42be-895e-c3037aba8465)
+![Captura de pantalla 2025-06-24 110403](https://github.com/user-attachments/assets/bb35d236-2166-4510-9346-248d19b854b4)
+![Captura de pantalla 2025-06-24 110412](https://github.com/user-attachments/assets/d6244d9c-fedc-41a0-bf2e-c6362d16849b)
+
+
