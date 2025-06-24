@@ -21,7 +21,7 @@
   <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="Typescript" />
 </p>
 
-A modern, cross-platform desktop application for managing my ESP devices. Built with Tauri, React, and TypeScript, this app provides an easy and modern interface for controlling and organizing my devices and a way to share the device configuration with others.
+A modern, cross-platform Smart Home application for managing my ESP devices. Built with Tauri, React, and TypeScript, this app provides an easy and modern interface for controlling and organizing my devices and a way to share the device configuration with others.
 
 > [!NOTE]
 >
